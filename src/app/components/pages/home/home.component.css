@@ -1,0 +1,32 @@
+
+ html, body { height: 100%; }
+
+
+.image{
+ margin-left: -8%;
+ padding-left: 26%;
+ margin-block-start: -1%;
+}
+
+.bg-1{
+    background: linear-gradient(to right, rgb(242, 240, 245), rgb(248, 249, 252));
+    height: 50vh;
+    padding-top: 150px;
+ }
+ 
+ .primaryTitle {
+  font-weight: bolder;
+  font-family: fantasy;
+  color: rgba(247, 78, 78, 0.98);
+  text-shadow:1px 1px rgb(80, 4, 4);
+  text-shadow:2px 2px rgb(85, 7, 7);
+  font-size: 30px;
+ }
+
+ .primaryTitle img{
+   width: 30px;
+   height: 30px;
+ }
+ 
+
+

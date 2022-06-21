@@ -1,0 +1,31 @@
+
+<div class=" d-flex justify-content-start">
+<div>  <div>
+  <h1 class="fant">{{data.name}}</h1>
+</div>
+<div class="container1">
+
+    <div class="card1">
+      <img  src="{{data.thumbnail.path}}.{{data.thumbnail.extension}}" >
+    </div>
+</div>
+
+<div class="descrip">
+  <p>{{data.description}}</p>
+</div>
+</div>
+
+
+<ngb-carousel style="width: 35% ; padding-left: 10px; position: absolute; margin-left: 50%; margin-top:4%;" >
+  <ng-template *ngFor="let c of comics" ngbSlide>
+    <h3>{{c.title}}</h3>
+    <div class="picsum-img-wrapper">
+      <div class="modal-wrap">
+      <img src="{{c.thumbnail.path}}.{{c.thumbnail.extension}}" alt="Random first slide">
+      </div>
+    </div>
+    <div class="carousel-caption">
+    </div>
+  </ng-template> 
+</ngb-carousel>
+</div>

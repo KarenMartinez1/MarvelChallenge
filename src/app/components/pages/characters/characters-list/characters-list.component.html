@@ -1,0 +1,86 @@
+<div class="drop">
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Order By
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <button type="button" class="dropdown-item" (click)="orderByNameAs()">Name (A-Z)</button>
+    <button type="button" class="dropdown-item" (click)="orderByNameDes()">Name (Z-A)</button>
+    <button type="button" class="dropdown-item" (click)="orderByDateAs()"> Date (Asc)</button>
+    <button type="button" class="dropdown-item" (click)="orderByDateDes()"> Date (Des)</button>
+  </div>
+</div>
+</div>
+
+
+<div class = "row  " >
+	<div class="col-8  " > 
+ <div class = "row  " > 
+	<div class=" col-6" *ngFor="let item of data1  | paginate: { itemsPerPage: 10, currentPage: page}">
+    <div class = container>
+        <div class = card>
+          <div class = image>
+            <img  src="{{item.thumbnail.path}}.{{item.thumbnail.extension}}" >
+          </div>
+          <div class = content>
+            <p class="letter"> {{item.description}} </p>
+            <div *ngIf="item.comics.available > 0" >
+            <button class="btnComic" (click)="modalComic(item.comics.items[0].resourceURI, content)">{{item.comics.items[0].name}}</button> 
+            </div>
+            <div *ngIf="item.comics.available > 1" >
+            <button class="btnComic" (click)="modalComic(item.comics.items[1].resourceURI, content)">{{item.comics.items[1].name}}</button> 
+            </div>
+            <div *ngIf="item.comics.available > 2" >
+            <button class="btnComic" (click)="modalComic(item.comics.items[2].resourceURI, content)">{{item.comics.items[2].name}}</button>
+            </div>
+          <div *ngIf="item.comics.available > 3" >
+            <button class="btnComic" (click)="modalComic(item.comics.items[3].resourceURI, content)">{{item.comics.items[3].name}}</button>
+            </div>
+          <br>
+            <a type="button" class="btn btn-outline-danger" [routerLink]="['/character-details', item.id]">VIEW MORE</a>
+          </div>
+          <div class = content2>
+                <p class="fant"> {{item.name}} </p>
+          </div>
+        </div>    
+      </div>
+</div>
+  </div>
+ </div> 
+</div> 
+<pagination-controls class="my-pagination" (pageChange)="page= $event" previousLabel="Previous" nextLabel="Next"></pagination-controls>
+
+<ng-template #content let-modal>
+  <div class="r">
+    <button type="button" class="btnClose" aria-label="Close" (click)="modal.dismiss('Cross click')"> <img src="./assets/btn-close.png"> </button>
+  </div>
+    <div class="modal-wrap">
+      <h1 class="title">
+      <img src="{{comic[0].thumbnail.path}}.{{comic[0].thumbnail.extension}}"> {{comic[0].title}}
+    </h1>
+    <p class="description">{{comic[0].description}}</p>
+    </div>
+   
+    <div>
+    <button type="button" class="btn-add" [ngClass]="{'color1':btncolAdd, 'color2':!btncolAdd}"  (click)="addFavorites()"> <img src={{btnImgAdd}}> {{titlebutton}}</button>
+    <button type="button" class="btn-car" > <img src="./assets/shopping-cart-primary.png">  ADD TO CART</button>
+  </div>
+</ng-template>
+
+
+<nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+  <h1 class="headerFavourite"><img src="./assets/Favourite.png">MY FAVOURITES</h1>
+  
+  <div class="position-sticky">
+    <div class="list-group list-group-flush mx-3 mt-4">
+      <div *ngIf=" favourites.length==0"> <img src=" ./assets/Comic2.png" style="opacity: 0.3;" width="240px" height="480px"></div>
+      <div class="modal-wrap" *ngFor="let img of favourites">
+        <div>
+          <img src="{{img.thumbnail.path}}.{{img.thumbnail.extension}}">
+          <button class="btnDelete" (click)="deleteFavourite(img)"> <img src="./assets/btn-delete.png"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
